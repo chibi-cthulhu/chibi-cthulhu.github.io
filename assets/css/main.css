@@ -367,7 +367,7 @@
 			input[type="button"].alt:hover,
 			button.alt:hover,
 			.button.alt:hover {
-				background: rgba(144, 144, 144, 0.075);
+				background: rgba(144, 144, 144, 0.616);
 				box-shadow: 0 0 0 2px rgba(144, 144, 144, 0.25);
 			}
 
@@ -1495,16 +1495,21 @@
 	#nav {
 		background: #0d1217;
 		z-index: 10002;
-		position: relative;
+		top:0;
+		left:0;
+		bottom:0;
+		position: fixed;
 		width: 4em;
+		display: flex;
+		justify-content: center;
 	}
 
 		#nav ul {
 			list-style: none;
 			margin: 0;
+			margin-top: 150px;
 			padding: 0;
-			position: fixed;
-			top: 1em;
+			top: 10em;
 			left: 0;
 		}
 
@@ -1660,6 +1665,7 @@
 	#main {
 		background: #f1f1f1;
 		width: 100%;
+		margin-left: 30px;
 	}
 
 		#main #header {
