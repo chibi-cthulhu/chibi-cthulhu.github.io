@@ -1771,3 +1771,10 @@
 				left: -15px;
 			}
 		}
+
+		@media screen and (max-width: 480px) {
+			#footer .information {
+				padding: 0 2em;
+			}
+		}
+		
