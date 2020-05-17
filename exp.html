@@ -1,7 +1,140 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<!-- VISA Tracking Code for https://chibi-cthulhu.github.io/ --><script>(function(v,i,s,a){if(!v._visaSettings){v._visaSettings={};}v._visaSettings["10af8bce-8767-11e9-b589-901b0edac50a"]={v:"0.3",s:"10af8bce-8767-11e9-b589-901b0edac50a",a:"1"};_v=i.getElementsByTagName("head")[0];_a=_v;_i=i.createElement("script");_s=_i;_s.defer="defer";_s.src=s+a+v._visaSettings["10af8bce-8767-11e9-b589-901b0edac50a"].v;_a.appendChild(_s);})(window,document,"//app-worker.visitor-analytics.io/main",".js?s=10af8bce-8767-11e9-b589-901b0edac50a&v=")</script><!-- VISA Tracking Code for https://chibi-cthulhu.github.io/ -->
+<script src="assets/js/jquery.min.js"></script>
+	<script>
+		var mql = window.matchMedia('(max-width: 980px)');
+		$( document ).ready(function() {
+            //reportWindowSize();
+            //window.onresize = reportWindowSize;
+            createContainers();
+            mql.addListener(determineClass);
+            determineClass();
+		});
+		
+		function reportWindowSize() {
+            if(window.innerWidth < 980){
+                var leftElements = document.getElementsByClassName("left");
+                while (leftElements.length > 0) {
+                    const element = leftElements[0];
+                    element.classList.remove("left");
+                    element.classList.add("right");
+                }
+            }
+            else{
+                var leftElements = document.getElementsByClassName("left");
+                if (leftElements.length == 0) { // means all elements are now right
+                var allElements = document.getElementsByClassName("container");
+                    for (let index = 0; index < allElements.length; index++) {
+                        const element = allElements[index];
+                        if (index % 2 == 0) {
+                            element.classList.remove("right");
+                            element.classList.add("left"); 
+                        }
+                    }
+                }
+            }
+        }
+        
+        function determineClass() {
+        if (mql.matches) {
+            var leftElements = document.getElementsByClassName("left");
+                        while (leftElements.length > 0) {
+                            const element = leftElements[0];
+                            element.classList.remove("left");
+                            element.classList.add("right");
+                        }
+        } else {
+            var leftElements = document.getElementsByClassName("left");
+                        if (leftElements.length == 0) { // means all elements are now right
+                        var allElements = document.getElementsByClassName("container");
+                            for (let index = 0; index < allElements.length; index++) {
+                                const element = allElements[index];
+                                if (index % 2 == 0) {
+                                    element.classList.remove("right");
+                                    element.classList.add("left"); 
+                                }
+                            }
+                        }
+            }
+        }
+
+        function GenerateTimeline(containerList) {
+            var wrapper = document.getElementById("timelineWrapper");
+            containerList.forEach((element, index) => {
+                var container = document.createElement("div");
+                container.classList.add("container");
+                if (index % 2 == 0) {
+                    container.classList.add("left");
+                }
+                else{
+                    container.classList.add("right");
+                }
+                var contentDate = document.createElement("div");
+                contentDate.classList.add("contentDate");
+
+                var year = document.createElement("h2");
+                year.innerHTML  = element.year;
+                contentDate.appendChild(year);
+
+                var title = document.createElement("h4");
+                title.innerHTML  = element.title;
+                contentDate.appendChild(title);
+
+                var parag = document.createElement("p");
+                element.content.forEach(sentence => {
+                    var text = document.createTextNode(sentence);
+                    parag.appendChild(text);
+                    if (element.content.length > 1) {
+                        var br = document.createElement("BR");
+                        parag.appendChild(br);
+                    }
+                });
+                contentDate.appendChild(parag);
+
+                container.appendChild(contentDate);
+                wrapper.appendChild(container);
+            });
+        }
+
+        function createContainers() {
+            var containerList = [
+                {year: "2019 ~", title:"CRM Administrator", content:[
+                    "Using MS Dynamics CRM 2016 on premise, developments for plugins and custom workflows.",
+                    "SSRS reports, detailed dashboards using javascript and HTML",
+                    "Integration with a third party solution Unidienst, configurations and management for a complex sales process",
+                ]},
+                {year: "2019", title:"Front-end Developer at Visitor Analytics", content:[
+                    "Front-end developments using react – redux libraries.",
+                    "Developed new website of the company using react-redux: https://www.visitoranalytics.io/",
+                    "Development of new features and fixing bugs for the analytics tool website: https://app.visitor-analytics.io/"
+                ]},
+                {year: "2018 - 2019", title:"Software Developer at EGP", content:[
+                    "MS Dynamics CRM development for company’s sale campaigns using Dynamics 365 (online).",
+					"Development of business process flows, custom workflows, workflows, plugins, javascript validations."
+                ]},
+                {year: "2014 - 2018", title:"Software Developer at Veripark", content:["MS Dynamics CRM development for various finance sector companies and government facility. Experienced in MS Dynamics 2013 – 2015 – 2016. Countless developments for plugins and javascript libraries for the projects I have worked on.",
+                    "Working with complex SSRS reports to provide business intelligence to analysis services.",
+                    "Generating windows services and tasks to automatize recurring events.",
+                    "Working with web services to integrate the CRM systems with 3rd party applications.",
+                    "SSIS integration using KingswaySoft.",
+                    "Adx Portal customizations."
+                ]},
+                {year: "2014", title:"SAP Developer at 2Ag", content:[
+                    "ABAP program development, RFCs to SAP Systems from ASP .NET Environment"
+                ]},
+                {year: "2013 – 2014", title:"Part-time Software Developer at Vestel", content:[
+                    "User interfaces with HTML and Javascript for Smart TVs."
+                ]},
+                {year: "2012 - For 9 weeks", title:"Internship at GTS Software Services", content:[
+                    "Web site development for Rexam with ASP .NET MVC Framework."
+                ]},
+                {year: "2012 - For 3 weeks", title:"Internship at Dokuz Eylul University IT Dept.", content:["Basic hardware examination"]},
+            ];
+
+            GenerateTimeline(containerList);
+        }
+	</script>
     <title>Work Experience</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,61 +190,8 @@
                     <li><span style="color:#19B5FE" class="label">SSRS</span></li>
                     <li><span style="color:#19B5FE" class="label">SSIS</span></li>
                 </ul>
-                <div class="timeline">
-                    <div class="container left">
-                        <div class="contentDate">
-                            <h2>2018 ~</h2>
-                            <h4>Software Developer at EGP</h4>
-                            <p>MS Dynamics CRM development for company’s sale campaigns using Dynamics 365 (online).<br>
-							   Development of business process flows, custom workflows, workflows, plugins, javascript validations.
-                            </p>
-                        </div>
-                    </div>
-					<div class="container right">
-                        <div class="contentDate">
-                            <h2>2014 - 2018</h2>
-                            <h4>Software Developer at Veripark</h4>
-                            <p>MS Dynamics CRM development for various finance sector companies and government facility. Experienced in MS Dynamics 2013 – 2015 – 2016.
-                                Countless developments for plugins and javascript libraries for the projects I have worked on.<br>
-                                I’ve designed and developed complex SSRS reports to provide business intelligence to analysis services.<br>
-                                Generating windows services and tasks to automatize recurring events.<br>
-                                Working with web services to integrate the CRM systems with 3rd party applications.<br>
-                                SSIS integration using KingswaySoft.<br>
-                                Adx Portal customizations.<br>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="container left">
-                        <div class="contentDate">
-                            <h2>07.2014 – 11.2014</h2>
-                            <h4>SAP Developer at 2Ag</h4>
-                            <p>ABAP program development, RFCs to SAP Systems from ASP .NET Environment
-                            </p>
-                        </div>
-                    </div>
-                    <div class="container right">
-                        <div class="contentDate">
-                            <h2>09.2013 – 06.2014</h2>
-                            <h4>Part-time Software Developer at Vestel</h4>
-                            <p>User interfaces with HTML and Javascript for Smart TVs.
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="container left">
-                        <div class="contentDate">
-                            <h2>2012 - For 9 weeks</h2>
-                            <h4>Internship at GTS Yazılım Hizmetleri</h4>
-                            <p>Web site development for Rexam with ASP .NET MVC Framework.</p>
-                        </div>
-                    </div>
-                    <div class="container right">
-                        <div class="contentDate">
-                            <h2>2012 - For 3 weeks</h2>
-                            <h4>Internship at Dokuz Eylul University IT Dept.</h4>
-                            <p>Basic hardware examination</p>
-                        </div>
-                    </div>
+                <div id="timelineWrapper" class="timeline">
+                   
                 </div>
             </div>
         </section>
@@ -120,7 +200,7 @@
             <div class="information">
                 <ul class="icons">
                     <li><span class="icon fa-envelope-square">&nbsp;dilek.kiziloluk@gmail.com</span></li>
-                    <li><span class="icon fa-mobile-phone">&nbsp;+90 545 2199126</span></li>
+                    <li><span class="icon fa-mobile-phone">&nbsp;+49 163 1928982</span></li>
                 </ul>
             </div>
         </footer>
@@ -128,7 +208,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.poptrox.min.js"></script>
 <script src="assets/js/jquery.scrolly.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
