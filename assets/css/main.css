@@ -1213,7 +1213,7 @@
 			section .inner, article .inner {
 				padding: 2em 0 0.1em 0;
 				padding-right: 2em;
-				padding-left: 2em;
+				padding-left: 3em;
 			}
 
 		}
@@ -1222,8 +1222,8 @@
 
 			section .inner, article .inner {
 				padding: 1em 0 0.1em 0;
-				padding-right: 1em;
-				padding-left: 1em;
+				padding-right: 0.5em;
+				padding-left: 2.5em;
 			}
 
 		}
@@ -1710,10 +1710,43 @@
 			text-align: center;
 		}
 
+		@media screen and (max-width: 980px) {
+			.right {
+				left: 2%;
+			}
+			.container {
+				width: 100%;
+				padding: 10px 20px;
+			}
+			.timeline::after {
+				left: 0%;
+			}
+		
+			.contentDate {
+				padding: 10px 15px;
+			}
+		
+			.right::before {
+				left: 10px;
+			}
+			.right::after {
+				left: -30px;
+			}
+		}
+
+		
 		@media screen and (max-width: 736px) {
 
 			#footer {
 				padding: 3em 0 1em 0;
 			}
 
+			.container::after {
+				width: 15px;
+				height: 15px;
+				top: 25px;
+			}
+			.right::after {
+				left: -15px;
+			}
 		}
