@@ -61,6 +61,8 @@
 
         function GenerateTimeline(containerList) {
             var wrapper = document.getElementById("timelineWrapper");
+            var link1 = "https://www.visitor-analytics.io/";
+            var link2 = "https://app.visitor-analytics.io/";
             containerList.forEach((element, index) => {
                 var container = document.createElement("div");
                 container.classList.add("container");
@@ -83,8 +85,30 @@
 
                 var parag = document.createElement("p");
                 element.content.forEach(sentence => {
+                    if (sentence.includes("link1")) {
+                        sentence = sentence.replace("link1", ""); 
+                        var link = document.createElement("a");
+                        var linkTxt = document.createTextNode(link1); 
+                        link.title = link1;
+                        link.href = link1;
+                        link.target="_blank";
+                        link.appendChild(linkTxt);
+                    }
+                    else if (sentence.includes("link2")) {
+                        sentence = sentence.replace("link2", ""); 
+                        var link = document.createElement("a");
+                        var linkTxt = document.createTextNode(link2); 
+                        link.title = link2;
+                        link.href = link2;
+                        link.target="_blank";
+                        link.appendChild(linkTxt);
+                    }
+
                     var text = document.createTextNode(sentence);
                     parag.appendChild(text);
+                    if (link) {
+                        parag.appendChild(link);
+                    }
                     if (element.content.length > 1) {
                         var br = document.createElement("BR");
                         parag.appendChild(br);
@@ -106,8 +130,8 @@
                 ]},
                 {year: "2019", title:"Front-end Developer at Visitor Analytics", content:[
                     "Front-end developments using react – redux libraries.",
-                    "Developed new website of the company using react-redux: https://www.visitoranalytics.io/",
-                    "Development of new features and fixing bugs for the analytics tool website: https://app.visitor-analytics.io/"
+                    "Developed new website of the company using react-redux: link1",
+                    "Development of new features and fixing bugs for the analytics tool website: link2"
                 ]},
                 {year: "2018 - 2019", title:"Software Developer at EGP", content:[
                     "MS Dynamics CRM development for company’s sale campaigns using Dynamics 365 (online).",
